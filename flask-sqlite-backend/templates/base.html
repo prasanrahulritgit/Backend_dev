@@ -22,10 +22,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        .navbar {
-
-            border-bottom: 1px solid var(--border-color);
-        }
         
         .nav-link {
         
@@ -111,7 +107,7 @@
         .nav-link.orange {
             color:white !important;
         }
-
+ 
         
     </style>
 </head>
@@ -122,15 +118,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <!-- Devices Tab -->
         <li class="nav-item">
-          <a class="nav-link  orange {% if request.endpoint == 'device.index' %}active{% endif %}"
+          <a class="nav-link orange {% if request.endpoint == 'device.index' %}active{% endif %}"
              href="{{ url_for('device.index') }}">
             <i class="fas fa-server me-2"></i> Devices
           </a>
         </li>
-        
         
         <!-- Users Tab (Admin Only) -->
         {% if current_user.is_authenticated and current_user.role == 'admin' %}
@@ -160,10 +155,19 @@
         </li>
         {% endif %}
       </ul>
+      
+      <!-- Logout Button - Aligned to the right -->
+      {% if current_user.is_authenticated %}
+      <div class="d-flex">
+        <a href="http://localhost:3000/auth" class="btn btn-outline-danger">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </a>
+      </div>
+      {% endif %}
     </div>
   </div>
 </nav>
-
+ 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -173,7 +177,10 @@
     {% endwith %}
     
     {% block content %}{% endblock %}
-
+ 
+    
+ 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+ 

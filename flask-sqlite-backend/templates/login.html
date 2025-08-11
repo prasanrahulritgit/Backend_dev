@@ -12,6 +12,31 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+    }
+
+    .logos {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .logo {
+        height: 40px;
+        width: auto;
+        max-width: 150px;
+        min-width: 80px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+        transform: scale(1.05);
     }
 
     .login-card {
@@ -21,18 +46,12 @@
         max-width: 400px;
         width: 90%;
         box-shadow: 0 0 20px rgba(18, 129, 214, 0.3);
+        position: relative;
+        z-index: 1;
     }
 
     .login-card:hover {
         box-shadow: 0 0 30px rgb(255, 106, 0);
-    }
-
-    .login-card h2 {
-        text-align: center;
-        margin-bottom: 35px;
-        font-size: 2rem;
-        font-weight: 600;
-        color: #ffffff;
     }
 
     .form-group {
@@ -88,6 +107,13 @@
         font-size: 0.75rem;
         color: #1281d6;
     }
+    .header h2 {
+        color: #ffffff;
+        font-size: 1.8rem;
+        font-weight: normal;
+        margin-top: 0;
+        text-align: center;  /* Add this line to center the heading */
+    }
 
     .btn-login {
         background-color: #ff6a00;
@@ -111,10 +137,33 @@
     .btn-login i {
         margin-left: 8px;
     }
+
+    @media (max-width: 768px) {
+        .logos {
+            top: 15px;
+            left: 15px;
+            right: 15px;
+        }
+        .logo {
+            height: 30px;
+            max-width: 120px;
+        }
+        .login-card {
+            padding: 40px 30px;
+        }
+    }
 </style>
 
+<div class="logos">
+    <img src="{{ url_for('static', filename='images/RutoMatrix_Nonbackground.png') }}" alt="RutoMatrix Logo" class="logo">
+    <img src="{{ url_for('static', filename='images/tessolve.png') }}" alt="Tessolve Logo" class="logo">
+</div>
+
 <div class="login-card">
-    <h2>Sign In</h2>
+    <div class="header">
+        <h2>Sign In</h2>
+    </div>
+
     <form method="POST" action="">
         {{ form.hidden_tag() }}
 

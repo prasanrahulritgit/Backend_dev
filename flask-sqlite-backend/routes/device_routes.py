@@ -1,7 +1,11 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
+
+
+
+from flask import Blueprint, current_app, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
+import pytz
 from models import Device, Reservation, db
-from datetime import datetime
+from datetime import datetime, timedelta
 
 device_bp = Blueprint('device', __name__)
 
@@ -12,6 +16,56 @@ def index():
         return redirect(url_for('reservation.dashboard'))
     devices = Device.query.all()
     return render_template('devices.html', devices=devices)
+
+
+@device_bp.route('/api/devices/<device_id>/drivers', methods=['GET'])
+@login_required
+def get_device_drivers(device_id):
+    try:
+        # Query the device from database
+        device = db.session.query(Device).filter_by(device_id=device_id).first()
+        
+        if not device:
+            return jsonify({
+                'status': 'error',
+                'message': 'Device not found'
+            }), 404
+            
+        # Prepare response data
+        response_data = {
+            'status': 'success',
+            'device_id': device.device_id,
+            'drivers': []
+        }
+        
+        # Add drivers only if they have IP addresses
+        drivers = [
+            {'name': 'Rutomatrix', 'ip_field': 'rutomatrix_ip'},
+            {'name': 'Pulse1', 'ip_field': 'pulse1_ip'},
+            {'name': 'Pulse2', 'ip_field': 'pulse2_ip'},
+            {'name': 'Pulse3', 'ip_field': 'pulse3_ip'},
+            {'name': 'CT1', 'ip_field': 'ct1_ip'},
+            {'name': 'CT2', 'ip_field': 'ct2_ip'},
+            {'name': 'CT3', 'ip_field': 'ct3_ip'}
+        ]
+        
+        for driver in drivers:
+            ip_address = getattr(device, driver['ip_field'], None)
+            if ip_address:
+                response_data['drivers'].append({
+                    'name': driver['name'],
+                    'ip': ip_address,
+                    'type': driver['name'].toLowerCase()
+                })
+        
+        return jsonify(response_data)
+        
+    except Exception as e:
+        current_app.logger.error(f"Error fetching device drivers: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'message': 'Internal server error'
+        }), 500
 
 
 
@@ -25,10 +79,15 @@ def get_devices_with_status():
         end_time = request.args.get('end_time')
         
         # Parse dates if provided
+        ist = pytz.timezone('Asia/Kolkata')
+        now = datetime.now(ist)
+        
         if start_time:
-            start_time = datetime.fromisoformat(start_time.replace('Z', '+00:00'))
+            start_time = datetime.fromisoformat(start_time.replace('Z', '+00:00')).astimezone(ist)
         if end_time:
-            end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
+            end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00')).astimezone(ist)
+        else:
+            end_time = now + timedelta(hours=1)  # Default 1 hour window
 
         devices = Device.query.all()
         devices_list = []
@@ -37,51 +96,47 @@ def get_devices_with_status():
             is_booked = False
             booking_info = {}
             
-            if start_time and end_time:
-                # Check for overlapping reservations
-                overlapping = Reservation.query.filter(
-                    Reservation.device_id == device.device_id,
-                    Reservation.start_time < end_time,
-                    Reservation.end_time > start_time
-                ).first()
-                
-                if overlapping:
-                    is_booked = True
-                    booking_info = {
-                        'booked_by': overlapping.user.username if overlapping.user else 'System',
-                        'reservation_start': overlapping.start_time.isoformat(),
-                        'reservation_end': overlapping.end_time.isoformat()
-                    }
+            # Check for overlapping reservations
+            overlapping = Reservation.query.filter(
+                Reservation.device_id == device.device_id,
+                Reservation.end_time >= now.replace(tzinfo=None),
+                Reservation.start_time < end_time.replace(tzinfo=None),
+                Reservation.end_time > start_time.replace(tzinfo=None)
+            ).first()
+            
+            if overlapping:
+                is_booked = True
+                booking_info = {
+                    'reservation_start': overlapping.start_time.isoformat(),
+                    'reservation_end': overlapping.end_time.isoformat()
+                }
             
             device_data = {
                 'device_id': device.device_id,
                 'status': 'booked' if is_booked else 'available',
-                'drivers': {
-                    'PC': device.PC_IP,
-                    'Rutomatrix': device.Rutomatrix_ip,
-                    'Pulse1': device.Pulse1_Ip,
-                    'Pulse2': device.Pulse2_ip,
-                    'Pulse3': device.Pulse3_ip,
-                    'CT1': device.CT1_ip,
-                    'CT2': device.CT2_ip,
-                    'CT3': device.CT3_ip
-                },
                 **booking_info
             }
             
             devices_list.append(device_data)
         
-        return jsonify({'devices': devices_list})
+        return jsonify({
+            'status': 'success',
+            'devices': devices_list,
+        })
     
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        current_app.logger.error(f"Error in get_devices_with_status: {str(e)}", exc_info=True)
+        return jsonify({
+            'status': 'error',
+            'message': str(e),
+            'error_type': type(e).__name__
+        }), 500
+    
     
 
 @device_bp.route('/api/devices', methods=['GET'])
 @login_required
 def get_all():
-    if current_user.role != 'admin':
-        return jsonify({'error': 'Unauthorized'}), 403
     
     devices = Device.query.all()
     devices_list = [{
@@ -99,10 +154,7 @@ def get_all():
 
 @device_bp.route('/api/devices/<device_id>', methods=['GET'])
 @login_required
-def get_device(device_id):
-    if current_user.role != 'admin':
-        return jsonify({'error': 'Unauthorized'}), 403
-    
+def get_device(device_id):  
     device = Device.query.get_or_404(device_id)
     return jsonify({
         'device_id': device.device_id,

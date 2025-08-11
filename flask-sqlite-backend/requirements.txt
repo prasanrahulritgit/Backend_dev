@@ -11,3 +11,6 @@ email-validator
 Flask-Migrate
 apscheduler
 pytz
+flask-jwt-extended
+pyjwt
+cryptography

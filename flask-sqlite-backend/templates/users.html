@@ -21,7 +21,7 @@
             --table-row-odd: #1a1a1a;
             --table-row-even: #222222;
         }
-
+ 
         body {
             background-color: var(--primary-bg);
             color: var(--text-primary);
@@ -29,51 +29,51 @@
         .card-body{
             color: #cccccc;
         }
-
+ 
         .card {
             background-color: var(--secondary-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
         }
-
+ 
         .card-header {
             background-color: var(--table-header-bg);
             border-bottom: 1px solid var(--border-color);
         }
-
+ 
         .table {
             color: var(--text-primary);
         }
-
+ 
         .table thead th {
             background-color: var(--table-header-bg);
             border-bottom: 1px solid var(--border-color);
         }
-
+ 
         .table tbody tr {
             background-color: var(--table-row-odd);
         }
-
+ 
         .table tbody tr:nth-of-type(even) {
             background-color: var(--table-row-even);
         }
-
+ 
         .btn-primary {
             background-color: var(--accent-orange);
             border-color: var(--accent-orange);
             color: #000;
         }
-
+ 
         .btn-outline-secondary {
             color: var(--accent-blue);
             border-color: var(--accent-blue);
         }
-
+ 
         .btn-outline-danger {
             color: var(--accent-orange);
             border-color: var(--accent-orange);
         }
-
+ 
         .filter-container {
             background-color: var(--secondary-bg);
             padding: 15px;
@@ -81,62 +81,77 @@
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
-
+ 
         .form-control, .form-select {
             background-color: #000;
             border: 1px solid var(--border-color);
             color: var(--text-primary);
         }
-
+ 
         .action-buttons .btn {
             margin-right: 5px;
             margin-bottom: 5px;
         }
-
+ 
         .role-badge {
             font-size: 0.8rem;
             padding: 0.35em 0.65em;
         }
-
+ 
         .badge-admin {
             background-color: var(--accent-orange);
             color: #000;
         }
-
+ 
         .badge-user {
             background-color: var(--accent-blue);
             color: #fff;
         }
-
+ 
         .orange-btn {
             background-color: #ff6a00;
             color: white;
             border: 1px solid #ff6a00;
         }
-
+ 
         .orange-btn:hover {
             background-color: #e65c00;
             border-color: #e65c00;
         }
-
+ 
         .blue-btn {
             background-color: #1281d6;
             color: white;
             border: 1px solid #1281d6;
         }
-
+ 
         .blue-btn:hover {
             background-color: #0f6ab3;
             border-color: #0f6ab3;
         }
-
+ 
         table tr td {
             background-color: #2b2b2b !important;
             color: white !important;
         }
-
-
-
+ 
+        .modal-content{
+            background-color: #333333;
+        }
+ 
+        .modal-header{
+            border-bottom: #333333;
+        }
+ 
+        .modal-footer{
+            border-top: #333333;
+        }
+        .btn-close{
+            background-color: #ff6a00;
+        }
+ 
+ 
+ 
     </style>
 </head>
 <body>
@@ -151,7 +166,7 @@
             </div>
             {% endif %}
         </div>
-
+ 
         <div class="filter-container">
             <form id="filterForm" class="row g-3">
                 <div class="col-md-4">
@@ -172,7 +187,7 @@
                 </div>
             </form>
         </div>
-
+ 
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -199,13 +214,13 @@
                                 </td>
                                 <td class="td action-buttons">
                                     {% if current_user.role == 'admin' or current_user.id == user.id %}
-                                    <button class="btn btn-sm edit-user blue-btn" 
+                                    <button class="btn btn-sm edit-user blue-btn"
                                             data-user-id="{{ user.id }}">
                                         Edit
                                     </button>
                                     {% endif %}
                                     {% if current_user.role == 'admin' and user.role != 'admin' %}
-                                    <button class="btn btn-sm delete-user orange-btn" 
+                                    <button class="btn btn-sm delete-user orange-btn"
                                             data-user-id="{{ user.id }}">
                                         Delete
                                     </button>
@@ -219,7 +234,7 @@
             </div>
         </div>
     </div>
-
+ 
     <!-- Add User Modal -->
     <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -258,7 +273,7 @@
             </div>
         </div>
     </div>
-
+ 
     <!-- Edit User Modal -->
     <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -284,7 +299,7 @@
             </div>
         </div>
     </div>
-
+ 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -297,20 +312,20 @@
             pageLength: 25,
             responsive: true
         });
-
+ 
         // Filter handlers
         $('#userIdFilter').on('keyup', function() {
             table.column(0).search(this.value).draw();
         });
-
+ 
         $('#usernameFilter').on('keyup', function() {
             table.column(1).search(this.value).draw();
         });
-
+ 
         $('#roleFilter').on('change', function() {
             table.column(3).search(this.value).draw();
         });
-
+ 
         // CSRF setup
         $.ajaxSetup({
             beforeSend: function(xhr, settings) {
@@ -320,7 +335,7 @@
                 }
             }
         });
-
+ 
         // Edit user handler
         $(document).on('click', '.edit-user', function() {
             const userId = $(this).data('user-id');
@@ -337,7 +352,7 @@
             
             modal.modal('show');
             $('#editUserForm').attr('action', `/users/update/${userId}`);
-
+ 
             $.ajax({
                 url: `/users/edit/${userId}`,
                 method: 'GET',
@@ -348,12 +363,12 @@
                     const editFormHtml = `
                         <div class="mb-3">
                             <label for="edit_user_name" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="edit_user_name" 
+                            <input type="text" class="form-control" id="edit_user_name"
                                 name="user_name" value="${response.user_name}" required>
                         </div>
                         <div class="mb-3">
                             <label for="edit_user_ip" class="form-label">User IP (optional)</label>
-                            <input type="text" class="form-control" id="edit_user_ip" 
+                            <input type="text" class="form-control" id="edit_user_ip"
                                 name="user_ip" value="${response.user_ip}">
                         </div>
                         <div class="mb-3">
@@ -387,7 +402,7 @@
                 }
             });
         });
-
+ 
         // Delete user handler
         $(document).on('click', '.delete-user', function() {
             const userId = $(this).data('user-id');
@@ -408,7 +423,7 @@
                 }
             });
         });
-
+ 
         // Form submission handlers
         $('#addUserForm').submit(function(e) {
             e.preventDefault();
@@ -420,7 +435,7 @@
                 password: $('#password').val(),
                 role: $('#role').val()
             };
-
+ 
             $.ajax({
                 url: $(this).attr('action'),
                 method: 'POST',
@@ -436,11 +451,11 @@
                         `<span class="badge role-badge badge-${response.user.role === 'admin' ? 'admin' : 'user'}">
                             ${response.user.role}
                         </span>`,
-                        `<button class="btn btn-sm btn-outline-secondary edit-user" 
+                        `<button class="btn btn-sm btn-outline-secondary edit-user"
                                 data-user-id="${response.user.id}">
                             Edit
                         </button>
-                        <button class="btn btn-sm btn-outline-danger delete-user" 
+                        <button class="btn btn-sm btn-outline-danger delete-user"
                                 data-user-id="${response.user.id}">
                             Delete
                         </button>`
@@ -452,6 +467,10 @@
                     // Reset form and close modal
                     $('#addUserForm')[0].reset();
                     $('#addUserModal').modal('hide');
+ 
+                    setTimeout(() => {
+                        window.location.href = window.location.href;
+                    }, 500);
                 },
                 error: function(xhr) {
                     let errorMsg = 'Failed to add user';
@@ -462,7 +481,7 @@
                 }
             });
         });
-
+ 
         $('#editUserForm').submit(function(e) {
             e.preventDefault();
             
@@ -473,7 +492,7 @@
                 password: $('#edit_password').val(),
                 role: $('#edit_role').val()
             };
-
+ 
             $.ajax({
                 url: $(this).attr('action'),
                 method: 'POST',
@@ -492,11 +511,11 @@
                             `<span class="badge role-badge badge-${response.user.role === 'admin' ? 'admin' : 'user'}">
                                 ${response.user.role}
                             </span>`,
-                            `<button class="btn btn-sm btn-outline-secondary edit-user" 
+                            `<button class="btn btn-sm btn-outline-secondary edit-user"
                                     data-user-id="${response.user.id}">
                                 Edit
                             </button>
-                            <button class="btn btn-sm btn-outline-danger delete-user" 
+                            <button class="btn btn-sm btn-outline-danger delete-user"
                                     data-user-id="${response.user.id}">
                                 Delete
                             </button>`
@@ -520,3 +539,4 @@
 </body>
 </html>
 {% endblock %}
+ 

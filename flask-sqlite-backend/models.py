@@ -82,6 +82,7 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(80), unique=True, nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
     user_ip = db.Column(db.String(15))
     password_hash = db.Column(db.String(128), nullable=False)  # NOT 'password'
     role = db.Column(db.String(20), default='user')
@@ -213,6 +214,8 @@ class Reservation(db.Model):
     def __repr__(self):
         return f'<Reservation {self.id} for device {self.device_id}>'
     
+    
+    
 class DeviceUsage(db.Model):
     __tablename__ = 'device_usage_history'
     
@@ -265,7 +268,7 @@ class DeviceUsage(db.Model):
             return (self.actual_end_time - self.actual_start_time).total_seconds()
         return None
 
-    @classmethod
+    '''@classmethod
     def close_active_sessions(cls, device_id=None, user_id=None):
         """Mark all active sessions as completed"""
         try:
@@ -287,7 +290,48 @@ class DeviceUsage(db.Model):
         except Exception as e:
             db.session.rollback()
             current_app.logger.error(f"Failed to close active sessions: {str(e)}")
+            return 0'''
+    
+
+    @classmethod
+    def get_active_sessions(cls, device_id=None, user_id=None):
+        query = cls.query.filter(cls.actual_end_time.is_(None))
+    
+        if device_id:
+            query = query.filter(cls.device_id == device_id)
+        if user_id:
+            query = query.filter(cls.user_id == user_id)
+        
+        return query.all()
+    
+    @classmethod
+    def terminate_active_sessions(cls, device_id=None, user_id=None, reason=None):
+        try:
+            ist = pytz.timezone('Asia/Kolkata')
+            current_time = datetime.now(ist)
+        
+            query = db.update(cls)\
+                .where(cls.actual_end_time.is_(None))\
+             .values(
+                actual_end_time=current_time,
+                status='terminated',
+                termination_reason=reason or 'System terminated'
+                 )
+        
+            if device_id:
+                 query = query.where(cls.device_id == device_id)
+            if user_id:
+                query = query.where(cls.user_id == user_id)
+            
+            result = db.session.execute(query)
+            db.session.commit()
+            return result.rowcount
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(f"Failed to terminate active sessions: {str(e)}")
             return 0
+
+
 
     def __repr__(self):
         return f'<DeviceUsage {self.id} - Device {self.device_id} by User {self.user_id}>'

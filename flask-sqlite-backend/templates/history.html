@@ -188,15 +188,6 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label for="userFilter" class="form-label">User</label>
-                    <select id="userFilter" class="form-select">
-                        <option value="">All Users</option>
-                        {% for user in users %}
-                        <option value="{{ user.id }}">{{ user.name }} ({{ user.email }})</option>
-                        {% endfor %}
-                    </select>
-                </div>
                 <div class="col-md-2">
                     <label for="statusFilter" class="form-label">Status</label>
                     <select id="statusFilter" class="form-select">
