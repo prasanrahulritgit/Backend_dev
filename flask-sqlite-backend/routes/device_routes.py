@@ -18,7 +18,7 @@ def index():
     return render_template('devices.html', devices=devices)
 
 
-@device_bp.route('/api/devices/<device_id>/drivers', methods=['GET'])
+@device_bp.route('/api/devices/<device_id>/drivers', methods=['GET'])                   #API drivers
 @login_required
 def get_device_drivers(device_id):
     try:
