@@ -167,7 +167,7 @@ def get_booked_devices():
                 'device_id': reservation.device_id,
                 'device_name': getattr(reservation.device, 'name', None) or reservation.device_id,
                 'user_id': reservation.user_id,
-                'user_name': getattr(reservation.user, 'username', None) or f"User {reservation.user_id}",
+                'user_name': getattr(reservation.user, 'user_name', None),
                 'ip_type': reservation.ip_type,
                 'start_time': start_ist.isoformat(),
                 'end_time': end_ist.isoformat(),
