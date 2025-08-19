@@ -1,0 +1,1224 @@
+
+      :root {
+        --primary-bg: #121212;
+        --secondary-bg: #1e1e1e;
+        --accent-orange: #ff6a00;
+        --accent-blue: #1281d6;
+        --text-primary: #1281d6;
+        --text-secondary: #cccccc;
+        --border-color: #333333;
+        --table-header-bg: #ff6a00;
+        --table-row-odd: #1a1a1a;
+        --table-row-even: #222222;
+      }
+
+      body {
+        background-color: var(--primary-bg);
+        color: var(--text-primary);
+      }
+
+      .card-body {
+        color: #cccccc;
+      }
+
+      .card {
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+      }
+
+      .card-header {
+        background-color: var(--table-header-bg);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .flatpickr-input {
+        background-color: #000 !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-primary) !important;
+        padding-left: 45px !important;
+      }
+
+      .flatpickr-calendar {
+        background-color: var(--secondary-bg) !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+      }
+
+      .flatpickr-day {
+        color: var(--text-primary) !important;
+      }
+
+      .flatpickr-day.selected,
+      .flatpickr-day.selected:hover {
+        background: var(--accent-orange) !important;
+        border-color: var(--accent-orange) !important;
+        color: #000 !important;
+      }
+
+      .flatpickr-day.today {
+        border-color: var(--accent-blue) !important;
+      }
+
+      .flatpickr-day:hover {
+        background: var(--primary-bg) !important;
+      }
+
+      .flatpickr-time input {
+        color: var(--text-primary) !important;
+      }
+
+      .flatpickr-months .flatpickr-month,
+      .flatpickr-weekdays,
+      .flatpickr-weekday {
+        color: var(--text-primary) !important;
+        fill: var(--text-primary) !important;
+      }
+
+      .flatpickr-current-month .numInputWrapper span.arrowUp:after {
+        border-bottom-color: var(--text-primary) !important;
+      }
+
+      .flatpickr-current-month .numInputWrapper span.arrowDown:after {
+        border-top-color: var(--text-primary) !important;
+      }
+
+      .table {
+        color: var(--text-primary);
+      }
+
+      .table thead th {
+        background-color: var(--table-header-bg);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .table tbody tr {
+        background-color: var(--table-row-odd);
+      }
+
+      .table tbody tr:nth-of-type(even) {
+        background-color: var(--table-row-even);
+      }
+
+      .btn-primary {
+        background-color: var(--accent-orange);
+        border-color: var(--accent-orange);
+        color: #000;
+      }
+
+      .btn-outline-secondary {
+        color: var(--accent-blue);
+        border-color: var(--accent-blue);
+      }
+
+      .btn-outline-danger {
+        color: var(--accent-orange);
+        border-color: var(--accent-orange);
+      }
+
+      .orange-btn {
+        background-color: #ff6a00;
+        color: white;
+        border: 1px solid #ff6a00;
+      }
+
+      .orange-btn:hover {
+        background-color: #e65c00;
+        border-color: #e65c00;
+      }
+
+      .filter-container {
+        background-color: var(--secondary-bg);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+      }
+
+      .form-control,
+      .form-select {
+        background-color: #000;
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+      }
+
+      .action-buttons .btn {
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+
+      .status-badge {
+        font-size: 0.8rem;
+        padding: 0.35em 0.65em;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+
+      .badge-expired {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      .badge-active {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .badge-upcoming {
+        background-color: var(--accent-blue);
+        color: white;
+      }
+
+      .scrollable-table {
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .scrollable-table thead th {
+        position: sticky;
+        top: 0;
+        background-color: var(--table-header-bg) !important;
+        z-index: 10;
+      }
+
+      .input-icon-group {
+        position: relative;
+      }
+
+      .input-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent-orange);
+        z-index: 5;
+      }
+
+      .form-control-lg {
+        padding-left: 45px;
+      }
+
+      .form-label {
+        color: #1281d6;
+      }
+
+      .reservation-card {
+        border-radius: 10px;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+      }
+
+      .reservation-header {
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 1.5rem;
+      }
+
+      .btn-reserve {
+        background-color: #ff6a00;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-reserve:hover {
+        background-color: #1281d6 !important;
+        border-color: #1281d6 !important;
+        color: white !important;
+      }
+
+      .table-secondary {
+        background-color: rgba(108, 117, 125, 0.1) !important;
+      }
+
+      .table-success {
+        background-color: rgba(40, 167, 69, 0.1) !important;
+      }
+
+      .sortable {
+        cursor: pointer;
+      }
+
+      .sortable:hover {
+        color: #ffffff;
+      }
+
+      .sorted-asc::after,
+      .sorted-desc::after {
+        margin-left: 5px;
+      }
+
+      .sorted-asc::after {
+        content: "↑";
+        color: var(--accent-orange);
+      }
+
+      .sorted-desc::after {
+        content: "↓";
+        color: var(--accent-orange);
+      }
+
+      .admin-cancel-btn {
+        transition: all 0.3s;
+      }
+
+      .admin-cancel-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+      }
+
+      .welcome-text {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+      }
+
+      .welcome-text span {
+        color: var(--accent-orange);
+        font-weight: 600;
+      }
+
+      .mb-4 {
+        width: 100%;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      .overlay-content {
+        background-color: var(--secondary-bg);
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+        border: 1px solid var(--border-color);
+      }
+
+      .overlay-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .close-overlay {
+        color: var(--accent-orange);
+        font-size: 28px;
+        cursor: pointer;
+      }
+
+      .device-tabs {
+        margin-bottom: 20px;
+      }
+
+      .device-tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: var(--primary-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+      }
+
+      .device-tab.active {
+        background-color: var(--accent-orange);
+        color: #000;
+      }
+
+      .server-rack-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .device-group {
+        margin-bottom: 2rem;
+      }
+
+      .device-group h5 {
+        margin-bottom: 1rem;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .device-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .server-rack {
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 5px;
+        padding: 15px;
+        width: 300px;
+        position: relative;
+      }
+
+      .rack-label {
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        background-color: #ff6a00;
+        color: #000;
+        padding: 0 10px;
+        font-weight: bold;
+        border-radius: 3px;
+      }
+
+      .rack-units {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .rack-row {
+        display: flex;
+        gap: 5px;
+        height: 80px;
+      }
+
+      .device-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background-color: rgb(16, 15, 15);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .device-details-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 800px;
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        z-index: 1050;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .device-details-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .close-details {
+        color: var(--accent-orange);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .device-details-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .device-detail-item {
+        margin-bottom: 10px;
+      }
+
+      .device-detail-label {
+        font-weight: bold;
+        color: var(--accent-orange);
+        margin-bottom: 5px;
+      }
+
+      .device-detail-value {
+        color: var(--text-secondary);
+      }
+
+      .device-card.selected {
+        border: 2px solid var(--accent-orange);
+        background-color: rgba(255, 106, 0, 0.1);
+      }
+
+      .device-card.booked {
+        opacity: 0.6;
+        cursor: not-allowed;
+        border-color: #dc3545 !important;
+      }
+
+      .device-card.booked:hover {
+        transform: none !important;
+        border-color: #dc3545 !important;
+      }
+
+      .device-card .device-front,
+      .device-card .device-back {
+        transition: all 0.3s;
+        backface-visibility: hidden;
+      }
+
+      .device-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .device-card.available:hover {
+        border-color: #28a745;
+      }
+
+      .device-card.fully-booked {
+        opacity: 0.7;
+      }
+
+      .device-card.disabled {
+        cursor: not-allowed;
+      }
+
+      .device-name {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .device-status {
+        font-size: 0.9rem;
+      }
+
+      /* Pagination Controls */
+      .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .page-item {
+        list-style: none;
+      }
+
+      .page-link {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #dee2e6;
+        color: #007bff;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .page-link:hover {
+        background-color: #e9ecef;
+      }
+
+      .page-item.active .page-link {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+      }
+
+      .page-item.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #fff;
+        border-color: #dee2e6;
+      }
+      .device-card .device-back {
+        display: none !important; /* Completely hide the back side */
+      }
+
+      .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+
+      .status-indicator.available {
+        background-color: #28a745;
+        box-shadow: 0 0 5px #28a745;
+      }
+
+      .status-indicator.booked {
+        background-color: #dc3545;
+        box-shadow: 0 0 5px #dc3545;
+      }
+
+      .confirm-selection {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .quick-select-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+      }
+
+      .quick-select-btn {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+      }
+
+      .driver-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .driver-grid::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+      }
+
+      .toast-container {
+        position: fixed; /* or absolute */
+        top: 1rem;
+        right: 1rem;
+        z-index: 1060; /* Higher than modals/backdrops (Bootstrap modal = 1050) */
+      }
+
+      .driver-grid {
+        display: grid;
+        grid-template-areas:
+          "driver driver driver driver"
+          ". driver driver .";
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+        row-gap: 30px;
+        column-gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .driver-card:nth-child(1) {
+        grid-area: 1 / 1;
+      }
+      .driver-card:nth-child(2) {
+        grid-area: 1 / 2;
+      }
+      .driver-card:nth-child(3) {
+        grid-area: 1 / 3;
+      }
+      .driver-card:nth-child(4) {
+        grid-area: 1 / 4;
+      }
+      .driver-card:nth-child(5) {
+        grid-area: 2 / 2;
+      }
+      .driver-card:nth-child(6) {
+        grid-area: 2 / 3;
+      }
+      /* Add more nth-child rules if you have more than 6 drivers */
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .driver-grid {
+          grid-template-areas:
+            "driver driver"
+            "driver driver"
+            "driver driver";
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .driver-card:nth-child(n) {
+          grid-area: auto !important;
+        }
+
+        .driver-card {
+          width: 150px;
+          min-height: 130px;
+        }
+      }
+
+      .driver-card {
+        width: 100%;
+        min-height: 160px;
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 150px;
+        border: 1px solid #333;
+        transition: all 0.3s ease, transform 0.5s ease;
+      }
+
+      .driver-card:hover {
+        border-color: #1281d6;
+        transform: translateY(-3px);
+      }
+
+      .driver-card.selected {
+        border: 2px solid var(--accent-orange) !important;
+        background-color: rgba(255, 106, 0, 0.1);
+        box-shadow: 0 0 10px rgba(255, 106, 0, 0.2);
+        transform: scale(0.95);
+        opacity: 0.7;
+      }
+
+      .driver-card:hover:not(.selected) {
+        border-color: #1281d6;
+      }
+
+      .driver-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #1281d6;
+      }
+
+      .driver-name {
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+      }
+
+      .driver-ip {
+        font-size: 0.85rem;
+        color: #cccccc;
+        word-break: break-all;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-top: 5px;
+      }
+
+      .driver-card.selected {
+        border: 2px solid #ff6a00;
+        background-color: rgba(255, 106, 0, 0.1);
+      }
+
+      .driver-card.selected .driver-ip {
+        background-color: rgba(255, 106, 0, 0.2);
+      }
+
+      .selected-drivers-container {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #1a1a1a;
+        border-radius: 5px;
+        border: 1px solid #333;
+      }
+
+      .selected-drivers-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .selected-driver-badge {
+        background-color: rgba(255, 106, 0, 0.2);
+        border: 1px solid #ff6a00;
+        border-radius: 20px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .remove-driver-btn {
+        background: none;
+        border: none;
+        color: #ff6a00;
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.8rem;
+      }
+
+      .driver-selection-summary {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #1a1a1a;
+        border-radius: 5px;
+        border: 1px solid #333;
+      }
+
+      /* Devices Grid Layout */
+      .devices-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+      }
+
+      .device-row {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+      }
+
+      .device-card {
+        flex: 1;
+        height: 140px;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transition: all 0.3s;
+        border-radius: 8px;
+        overflow: hidden;
+        min-width: 0;
+      }
+
+      .device-front,
+      .device-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgb(17, 1, 1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .device-details {
+        font-size: 0.8rem;
+        text-align: left;
+        width: 100%;
+      }
+
+      /* Status Indicators */
+      .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 8px;
+      }
+
+      .status-indicator.available {
+        background-color: #28a745;
+      }
+
+      .status-indicator.booked {
+        background-color: #dc3545;
+      }
+
+      .device-card.booked {
+        opacity: 0.7;
+      }
+
+      /* Booked Devices Grid */
+      .booked-devices-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .booked-device-card {
+        background: white;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .booked-device-card h5 {
+        margin-top: 0;
+        color: #dc3545;
+      }
+
+      /* Loading and Error States */
+      .loading-message,
+      .error-message {
+        text-align: center;
+        padding: 30px;
+        font-size: 1.1rem;
+      }
+
+      .loading-message i {
+        margin-right: 10px;
+      }
+
+      .error-message {
+        color: #dc3545;
+      }
+
+      /* Overlay for details */
+      .details-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1040;
+        display: none;
+      }
+
+      .backToDevicesBtn {
+        background-color: transparent;
+        border-color: #1281d6;
+        color: #1281d6;
+        transition: all 0.3s;
+      }
+
+      .backToDevicesBtn:hover {
+        background-color: rgba(18, 129, 214, 0.1);
+      }
+
+      .text-muted {
+        color: #ff6a00 !important;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .spaced-bottom {
+        margin-bottom: 15px; /* or any px/rem value you prefer */
+      }
+
+      .btn-outline-primary:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: transparent;
+      }
+
+      .launch-btn:not(:disabled):hover {
+        background-color: #0d6efd;
+        color: white;
+      }
+
+      .booked-devices-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .booked-device-card {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .booked-device-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+
+      .booked-device-card-title {
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .booked-device-card-status {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+      }
+
+      .booked-device-card-body {
+        font-size: 0.9rem;
+      }
+
+      .booked-device-card-row {
+        display: flex;
+        margin-bottom: 0.5rem;
+      }
+
+      .booked-device-card-label {
+        font-weight: 500;
+        width: 100px;
+        color: #6c757d;
+      }
+
+      .booked-device-card-value {
+        flex: 1;
+      }
+
+      .booked-device-card-footer {
+        margin-top: 1rem;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .filter-container {
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .filter-container label {
+        color: var(--text-primary);
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      .filter-container input {
+        background-color: #000;
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+      }
+
+      .filter-container input:focus {
+        border-color: var(--accent-orange);
+        box-shadow: 0 0 0 0.25rem rgba(255, 106, 0, 0.25);
+      }
+
+      /* Style for both clear buttons */
+      #clearFilter,
+      #clearBookedFilter {
+        border-radius: 0.375rem; /* Match Bootstrap's default border radius */
+        border: 1px solid var(--accent-blue); /* Match your theme */
+        color: var(--accent-blue);
+        background-color: transparent;
+        transition: all 0.3s ease;
+      }
+
+      #clearFilter:focus,
+      #clearBookedFilter:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(18, 129, 214, 0.25); /* Bootstrap-style blue glow */
+      }
+
+      #clearFilter:hover,
+      #clearBookedFilter:hover {
+        background-color: rgba(18, 129, 214, 0.1);
+        border-color: var(--accent-blue);
+      }
+
+      /* Driver Sections Layout */
+      .driver-section {
+        margin-bottom: 2rem;
+      }
+
+      .driver-section h5 {
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .driver-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Driver Card Styles */
+      .driver-card {
+        width: 220px;
+        min-height: 160px;
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .driver-card.available {
+        border-left: 4px solid var(--accent-blue);
+      }
+
+      .driver-card.booked {
+        border-left: 4px solid var(--accent-orange);
+        opacity: 0.8;
+      }
+
+      .driver-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .driver-card.booked:hover {
+        transform: none;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .driver-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .driver-ip {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        word-break: break-all;
+        margin: 0.5rem 0;
+      }
+
+      .driver-status {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      .driver-status.available {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+      }
+
+      .driver-status.booked {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+      }
+
+      .booking-info {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+      }
+
+      .booking-slot {
+        padding: 0.3rem;
+        margin-bottom: 0.3rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .booking-slot .badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .driver-card {
+          width: calc(50% - 0.5rem);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .driver-card {
+          width: 100%;
+        }
+
+        .driver-section h5 {
+          font-size: 1rem;
+        }
+      }
+
+      /* Add this to your existing CSS */
+      .driver-sections-container {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+      }
+
+      @media (max-width: 992px) {
+        .driver-sections-container {
+          flex-direction: column;
+        }
+      }
+
+      /* Device Type Icons */
+      .device-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--accent-orange);
+      }
+
+      .rutomatrix-icon {
+        color: #1281d6;
+      }
+
+      .pulse-icon {
+        background-image: url("/static/images/pulse-icon.png");
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        filter: brightness(0) saturate(100%) invert(31%) sepia(98%)
+          saturate(1239%) hue-rotate(176deg) brightness(91%) contrast(89%);
+      }
+
+      .ct-icon {
+        color: #ffc107;
+      }
+
+      .pc-icon {
+        color: #17a2b8;
+      }
+
+      .other-icon {
+        color: #6c757d;
+      }
