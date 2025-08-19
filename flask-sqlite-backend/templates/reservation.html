@@ -23,9 +23,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/reservation.css') }}"> 
   </head>
   <body>
-    <div class="container-fluid py-4">
+     <div class="container-fluid py-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">Device Reservation</h1>
+        <h1 class="h3 mb-0"> Device Reservation</h1>
+        <a href="http://localhost:3000/auth" class="btn btn-outline-danger">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </a>
       </div>
 
       {% with messages = get_flashed_messages(with_categories=true) %} {% if
