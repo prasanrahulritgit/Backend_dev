@@ -10,6 +10,38 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/users.css') }}"> 
+    <style>
+        /* Password toggle styling */
+        .password-input-container {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            color: #6c757d;
+            padding: 5px;
+        }
+        
+        .password-toggle:hover {
+            color: #495057;
+        }
+        
+        .password-field {
+            padding-right: 40px;
+        }
+        
+        /* Edit user modal specific styles */
+        #editUserBody .password-input-container {
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid py-4">
@@ -113,9 +145,9 @@
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <div class="password-input-container">
-                                <input type="password" class="form-control" id="password" name="password" required>
-                                <button type="button" class="password-toggle" id="togglePassword">
-                                    <i class="fas fa-eye" id="eyeIcon"></i>
+                                <input type="password" class="form-control password-field" id="password" name="password" required>
+                                <button type="button" class="password-toggle" id="toggleAddPassword">
+                                    <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </div>
@@ -148,7 +180,7 @@
                     <div class="modal-body" id="editUserBody">
                         <div class="text-center py-4">
                             <div class="spinner-border text-primary" role="status">
-                                <span class="sr-only">Loading...</span>
+                                <span class="visually-hidden">Loading...</span>
                             </div>
                             <p class="mt-2">Loading user details...</p>
                         </div>
@@ -166,7 +198,148 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="{{ url_for('static', filename='js/users.js') }}"></script>    
+    <script src="{{ url_for('static', filename='js/users.js') }}"></script>
+    
+    <script>
+        // Password visibility toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle password visibility in add user modal
+            const toggleAddPassword = document.getElementById('toggleAddPassword');
+            const addPasswordField = document.getElementById('password');
+            
+            if (toggleAddPassword && addPasswordField) {
+                toggleAddPassword.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    // Toggle the password field type
+                    const type = addPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    addPasswordField.setAttribute('type', type);
+                    
+                    // Toggle the eye icon
+                    if (type === 'text') {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            }
+            
+            // Handle password toggles in edit modal when it's loaded
+            $('#editUserModal').on('shown.bs.modal', function() {
+                // Add password toggle button to the password field in edit modal
+                const passwordField = $('#editUserModal input[type="password"]');
+                
+                if (passwordField.length && !passwordField.next('.password-toggle').length) {
+                    // Create and add the toggle button
+                    const toggleButton = $('<button>', {
+                        type: 'button',
+                        class: 'password-toggle',
+                        css: {
+                            position: 'absolute',
+                            right: '10px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            zIndex: '10',
+                            color: '#6c757d',
+                            padding: '5px'
+                        },
+                        html: '<i class="fas fa-eye"></i>'
+                    });
+                    
+                    // Wrap the password field and add the toggle button
+                    if (!passwordField.parent().hasClass('password-input-container')) {
+                        passwordField.wrap('<div class="password-input-container" style="position:relative;"></div>');
+                    }
+                    passwordField.after(toggleButton);
+                    
+                    // Add the password-field class for styling
+                    passwordField.addClass('password-field');
+                    
+                    // Add click event to the toggle button
+                    toggleButton.on('click', function() {
+                        const field = $(this).prev('input');
+                        const icon = $(this).find('i');
+                        const type = field.attr('type') === 'password' ? 'text' : 'password';
+                        
+                        field.attr('type', type);
+                        
+                        if (type === 'text') {
+                            icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                        } else {
+                            icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                        }
+                    });
+                }
+            });
+            
+            // Reinitialize the toggle when the edit modal is about to be shown
+            $('#editUserModal').on('show.bs.modal', function() {
+                // Remove any existing toggle buttons to avoid duplicates
+                $('#editUserModal .password-toggle').remove();
+                $('#editUserModal .password-input-container').contents().unwrap();
+            });
+            
+            // Also handle when the add modal is shown (in case it was previously hidden)
+            $('#addUserModal').on('shown.bs.modal', function() {
+                // Reattach the event listener for the add modal
+                const toggleAddPassword = document.getElementById('toggleAddPassword');
+                const addPasswordField = document.getElementById('password');
+                
+                if (toggleAddPassword && addPasswordField) {
+                    // Remove any existing event listeners
+                    const newToggle = toggleAddPassword.cloneNode(true);
+                    toggleAddPassword.parentNode.replaceChild(newToggle, toggleAddPassword);
+                    
+                    // Add the event listener to the new button
+                    newToggle.addEventListener('click', function() {
+                        const icon = this.querySelector('i');
+                        // Toggle the password field type
+                        const type = addPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                        addPasswordField.setAttribute('type', type);
+                        
+                        // Toggle the eye icon
+                        if (type === 'text') {
+                            icon.classList.remove('fa-eye');
+                            icon.classList.add('fa-eye-slash');
+                        } else {
+                            icon.classList.remove('fa-eye-slash');
+                            icon.classList.add('fa-eye');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Function to initialize password toggles (can be called from users.js if needed)
+        function initPasswordToggles() {
+            // Add modal toggle
+            const toggleAddPassword = document.getElementById('toggleAddPassword');
+            const addPasswordField = document.getElementById('password');
+            
+            if (toggleAddPassword && addPasswordField) {
+                toggleAddPassword.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    const type = addPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    addPasswordField.setAttribute('type', type);
+                    
+                    if (type === 'text') {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            }
+        }
+        
+        // Initialize on page load
+        initPasswordToggles();
+    </script>
 </body>
 </html>
 {% endblock %}
