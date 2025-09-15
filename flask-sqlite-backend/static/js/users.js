@@ -61,7 +61,7 @@
                                 name="user_name" value="${response.user_name}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="edit_user_ip" class="form-label">User IP (optional)</label>
+                            <label for="edit_user_ip" class="form-label">User ID (optional)</label>
                             <input type="text" class="form-control" id="edit_user_ip"
                                 name="user_ip" value="${response.user_ip}">
                         </div>
