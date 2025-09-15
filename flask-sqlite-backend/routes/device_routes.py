@@ -1,6 +1,4 @@
 
-
-
 from flask import Blueprint, current_app, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 import pytz
@@ -40,7 +38,7 @@ def get_device_drivers(device_id):
         
         # Add drivers only if they have IP addresses
         drivers = [
-            {'name': 'Rutomatrix', 'ip_field': 'rutomatrix_ip'},
+            # {'name': 'Rutomatrix', 'ip_field': 'rutomatrix_ip'},
             {'name': 'Pulse1', 'ip_field': 'pulse1_ip'},
             {'name': 'Pulse2', 'ip_field': 'pulse2_ip'},
             {'name': 'Pulse3', 'ip_field': 'pulse3_ip'},
@@ -142,7 +140,7 @@ def get_all():
     devices_list = [{
         'device_id': device.device_id,
         'PC_IP': device.PC_IP,
-        'Rutomatrix_ip': device.Rutomatrix_ip,
+        # 'Rutomatrix_ip': device.Rutomatrix_ip,
         'Pulse1_Ip': device.Pulse1_Ip,
         'Pulse2_ip': device.Pulse2_ip,
         'Pulse3_ip': device.Pulse3_ip,
@@ -159,7 +157,7 @@ def get_device(device_id):
     return jsonify({
         'device_id': device.device_id,
         'PC_IP': device.PC_IP,
-        'Rutomatrix_ip': device.Rutomatrix_ip,
+        # 'Rutomatrix_ip': device.Rutomatrix_ip,
         'Pulse1_Ip': device.Pulse1_Ip,
         'Pulse2_ip': device.Pulse2_ip,
         'Pulse3_ip': device.Pulse3_ip,
@@ -179,7 +177,7 @@ def add():
         new_device = Device(
             device_id=request.form['device_id'],
             PC_IP=request.form.get('PC_IP'),
-            Rutomatrix_ip=request.form.get('Rutomatrix_ip'),
+            # Rutomatrix_ip=request.form.get('Rutomatrix_ip'),
             Pulse1_Ip=request.form.get('Pulse1_Ip'),
             Pulse2_ip=request.form.get('Pulse2_ip'),
             Pulse3_ip=request.form.get('Pulse3_ip'),
@@ -212,7 +210,7 @@ def edit(device_id):
         return jsonify({
             'device_id': device.device_id,
             'PC_IP': device.PC_IP,
-            'Rutomatrix_ip': device.Rutomatrix_ip,
+            # 'Rutomatrix_ip': device.Rutomatrix_ip,
             'Pulse1_Ip': device.Pulse1_Ip,
             'Pulse2_ip': device.Pulse2_ip,
             'Pulse3_ip': device.Pulse3_ip,
@@ -224,7 +222,7 @@ def edit(device_id):
     # Handle POST request for updates
     try:
         device.PC_IP = request.form.get('PC_IP', device.PC_IP)
-        device.Rutomatrix_ip = request.form.get('Rutomatrix_ip', device.Rutomatrix_ip)
+        # device.Rutomatrix_ip = request.form.get('Rutomatrix_ip', device.Rutomatrix_ip)
         device.Pulse1_Ip = request.form.get('Pulse1_Ip', device.Pulse1_Ip)
         device.Pulse2_ip = request.form.get('Pulse2_ip', device.Pulse2_ip)
         device.Pulse3_ip = request.form.get('Pulse3_ip', device.Pulse3_ip)
@@ -275,7 +273,7 @@ def view_ips(device_id):
     return jsonify({
         'device_id': device.device_id,
         'PC_IP': device.PC_IP,
-        'Rutomatrix_ip': device.Rutomatrix_ip,
+        # 'Rutomatrix_ip': device.Rutomatrix_ip,
         'Pulse1_Ip': device.Pulse1_Ip,
         'Pulse2_ip': device.Pulse2_ip,
         'Pulse3_ip': device.Pulse3_ip,
@@ -297,7 +295,7 @@ def get_single_device_ip(device_id, ip_type):
     # Map URL-friendly IP types to database column names
     ip_type_mapping = {
         'PC_IP': 'PC_IP',
-        'Rutomatrix_ip': 'Rutomatrix_ip',
+        # 'Rutomatrix_ip': 'Rutomatrix_ip',
         'Pulse1_Ip': 'Pulse1_Ip',
         'Pulse2_ip': 'Pulse2_ip',
         'Pulse3_ip': 'Pulse3_ip',

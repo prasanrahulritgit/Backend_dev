@@ -33,13 +33,13 @@ def login():
             if request.is_json:
                 return jsonify({
                     'success': True,
-                    'message': 'Logged in successfully!',
+                    # 'message': 'Logged in successfully!',
                     'redirect': 'http://127.0.0.1:5000/'  # Explicit Flask URL
                 })
             
             flash('Logged in successfully!', 'success')
             next_page = request.args.get('next')
-            return redirect(next_page or 'http://127.0.0.1:5000/')  # Explicit redirect
+            return redirect(next_page or 'http://127.0.0.1:5000/reservations')  # Explicit redirect
         
         # Authentication failed
         if request.is_json:
