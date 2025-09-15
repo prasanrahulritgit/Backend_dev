@@ -33,7 +33,7 @@ def login():
             if request.is_json:
                 return jsonify({
                     'success': True,
-                    # 'message': 'Logged in successfully!',
+                    #'message': 'Logged in successfully!',
                     'redirect': 'http://127.0.0.1:5000/reservations'  # Explicit Flask URL
                 })
             

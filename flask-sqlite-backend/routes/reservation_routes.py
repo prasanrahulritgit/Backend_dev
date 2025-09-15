@@ -182,7 +182,7 @@ def get_booked_devices():
                     'pulse1_ip': getattr(reservation.device, 'Pulse1_Ip', None),
                     'pulse2_ip': getattr(reservation.device, 'Pulse2_ip', None),
                     'pulse3_ip': getattr(reservation.device, 'Pulse3_ip', None),
-                    'rutomatrix_ip': getattr(reservation.device, 'Rutomatrix_ip', None)
+                    # 'rutomatrix_ip': getattr(reservation.device, 'Rutomatrix_ip', None)
                 }
             })
         
