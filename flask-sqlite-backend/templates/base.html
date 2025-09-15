@@ -73,10 +73,25 @@
         {% endif %}
     {% endwith %}
     
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock %}  
  
-    
- 
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Target only success flash messages
+    const successMsg = document.querySelector(".flash-message.success");
+
+    if (successMsg) {
+      setTimeout(() => {
+        successMsg.style.transition = "opacity 0.5s ease";
+        successMsg.style.opacity = "0";
+
+        // Remove after fade out
+        setTimeout(() => successMsg.remove(), 500);
+      }, 4000); // 4 seconds
+    }
+  });
+</script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
