@@ -1221,3 +1221,33 @@
       .other-icon {
         color: #6c757d;
       }
+
+      .flash-message {
+          padding: 10px 15px;
+          margin: 10px 0;
+          border-radius: 6px;
+      }
+      
+      .flash-message.success {
+          background-color: #28a745;
+          color: white;
+      }
+      
+      .flash-message.error {
+          background-color: #dc3545;
+          color: white;
+      }
+      
+      .flash-message.warning {
+          background-color: #ffc107;
+          color: black;
+      }
+      
+      .flash-message.info {
+          background-color: #17a2b8;
+          color: white;
+      }
+      
+      .nav-link.orange {
+          color:white !important;
+      }
