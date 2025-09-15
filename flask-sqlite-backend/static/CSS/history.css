@@ -145,3 +145,7 @@
         td.td .text-muted {
             color: #cccccc !important;  /* Light gray on dark background */
         }
+
+        .btn-close{
+            background-color:#ff6a00
+        }

@@ -61,7 +61,7 @@
                                 name="user_name" value="${response.user_name}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="edit_user_ip" class="form-label">User IP (optional)</label>
+                            <label for="edit_user_ip" class="form-label">User ID (optional)</label>
                             <input type="text" class="form-control" id="edit_user_ip"
                                 name="user_ip" value="${response.user_ip}">
                         </div>
@@ -229,3 +229,16 @@
             });
         });
     });
+ // Password toggle functionality
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.className = 'fas fa-eye';
+            }
+        });
