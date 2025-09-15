@@ -229,3 +229,16 @@
             });
         });
     });
+ // Password toggle functionality
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.className = 'fas fa-eye';
+            }
+        });
